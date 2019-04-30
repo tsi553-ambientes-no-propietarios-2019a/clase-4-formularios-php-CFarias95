@@ -12,3 +12,66 @@
  */
 
 ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta http-equiv="Pragma" content="no-cache">
+   <title>FORMULARIO</title>
+
+</head>
+
+<body>
+   <div class="main">
+      <center>
+         <div>
+            <form action="index.php" method="POST">
+               <div>
+                  <label>Usuario: </label>
+                  <input type="text" placeholder="Usuario" name="usuario" required>
+               </div>
+               <div>
+                  <label>Password: </label>
+                  <input type="password" placeholder="Contraseña" name="contraseña" required>
+               </div>
+               <input type="submit" value="Enviar">
+
+            </form>
+
+         </div>
+      </center>
+   </div>
+
+</body>
+
+</html>
+<?php
+
+if ($_POST['usuario'] != "" && $_POST['contraseña'] != "") {
+   $Datos = array(
+      'carlos' => 'carlos123',
+      'Andres' => '@ndresito',
+      'juan' => 'juan1995',
+      'Mario' => 'Mario1985',
+      'Manuel' => 'manuel16*'
+   );
+   $nombre = $_POST['usuario'];
+   $pss = $_POST['contraseña'];
+
+   foreach ($Datos as $value => $key) {
+      if ($value == "$nombre" && $key == "$pss") {
+         header('Location: welcome.php');
+      }else{
+         ?>
+         <script>
+            alert('El Cliente y la contraseña no coinciden');
+            window.location.href = 'index.php';
+         </script>
+
+      <?php
+   }
+}
+}
+include 'nombre.php';
+?>
